@@ -5,19 +5,20 @@ typedef std::vector<bool> vec;
 typedef std::vector<std::vector<bool>> grid;
 
 const int length {25}; //version 2 type (25x25)
-char white_symbol= '#', black_symbol =' ';
-grid Board;
+constexpr char kWhite_symbol= '#', kBlack_symbol =' ';
 
 void write_on_board(grid& Board, int length);
 void print_line(int length, char symbol );
 grid square_module(int length);
-void past_grid(grid& LargeGrid, const grid& SmallGrid,
+void paste_grid(grid& LargeGrid, const grid& SmallGrid,
                 size_t start_row, size_t start_col);
 
 void print_board(const grid& Board);
 
 int main(void)
 {
+    grid Board;
+
     write_on_board(Board, length);
     Board[5][6] = 1;
     print_board(Board);
@@ -32,11 +33,11 @@ void write_on_board(grid& Board, int length){
     };
     // square modules in corners
     grid square {square_module(7)};
-    past_grid(Board, square, 0, 0);
-    past_grid(Board, square, 0, length-7);
-    past_grid(Board, square, length-7, 0);
+    paste_grid(Board, square, 0, 0);
+    paste_grid(Board, square, 0, length-7);
+    paste_grid(Board, square, length-7, 0);
     grid align_square {square_module(5)};
-    past_grid(Board, align_square, 16, 16);
+    paste_grid(Board, align_square, 16, 16);
 
     // timing pattern
 
@@ -73,17 +74,17 @@ grid square_module(int square_length) {
     return square;
 }
 
-void past_grid(grid& LargeGrid, const grid& SmallGrid,
+void paste_grid(grid& LargeGrid, const grid& SmallGrid,
                 size_t start_row, size_t start_col){
-    size_t small_lenth{SmallGrid.size()};
-    for (int i{0};i < small_lenth; ++i){
-        for (int j{0};j < small_lenth; ++j){
+    size_t small_length{SmallGrid.size()};
+    for (int i{0};i < small_length; ++i){
+        for (int j{0};j < small_length; ++j){
             LargeGrid[start_row + i][start_col + j] = SmallGrid[i][j];
         };
     };    
 }
 
-void print_line(int box_length, char symbol = white_symbol) {
+void print_line(int box_length, char symbol = kWhite_symbol) {
     for (int i = 0; i <= box_length; ++i) std::cout << symbol << ' ';
     std::cout << symbol << std::endl;
 }
@@ -94,11 +95,11 @@ void print_board(const grid& Board){
     // std::cout << std::string(box_length,'x') << '\n';
     print_line(box_length);
     for (size_t i = 0; i < Board.size(); ++i) {
-        std::cout << white_symbol << ' ';
+        std::cout << kWhite_symbol << ' ';
         for (const bool value : Board[i]){    
-            std::cout << (value?black_symbol:white_symbol) << ' ';
+            std::cout << (value?kBlack_symbol:kWhite_symbol) << ' ';
         }
-    std::cout << white_symbol<< '\n';
+    std::cout << kWhite_symbol<< '\n';
     };
     // std::cout << std::string(box_length*2+3,'x') << std::endl;
     print_line(box_length);
