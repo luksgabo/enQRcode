@@ -4,10 +4,11 @@
 typedef std::vector<std::vector<bool>> Grid;
 
 const int length {25}; //version 2 type (25x25)
+char white_symbol{'x'};
 Grid Board;
 
 void write_on_board(Grid& Board, int length);
-void print_line(int length, char symbol);
+void print_line(int length, char symbol = white_symbol );
 Grid square_module(int length);
 void past_grid(Grid& LargeGrid, const Grid& SmallGrid,
                 size_t start_row, size_t start_col);
@@ -69,21 +70,21 @@ void print_board(const Grid& Board){
     size_t box_length { Board[0].size()};
 
     // std::cout << std::string(box_length,'x') << '\n';
-    for (int i{0};i<=box_length;++i) std::cout << "x ";
-    std::cout << 'x' << std::endl;
+    for (int i{0};i<=box_length;++i) std::cout << white_symbol << ' ';
+    std::cout << white_symbol << std::endl;
     for (size_t i = 0; i < Board.size(); ++i) {
-        std::cout << "x ";
+        std::cout << white_symbol << ' ';
         for (const bool value : Board[i]){    
-            std::cout << (value?' ':'x') << ' ';
+            std::cout << (value?' ':white_symbol) << ' ';
         }
-    std::cout << "x\n";
+    std::cout << white_symbol<< '\n';
     };
     // std::cout << std::string(box_length*2+3,'x') << std::endl;
     print_line(box_length);
 
 }
 
-void print_line(int box_length, char symbol = 'x') {
+void print_line(int box_length, char symbol = white_symbol) {
     for (int i = 0; i < box_length; ++i) std::cout << symbol << ' ';
     std::cout << symbol << std::endl;
 }
