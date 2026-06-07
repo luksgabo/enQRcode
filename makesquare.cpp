@@ -27,13 +27,17 @@ void write_on_board(Grid& Board, int length){
 }
 
 void print_board(const Grid& Board){
+    size_t box_length { Board[0].size()};
 
-    for (const std::vector vec : Board) {
-        for (const bool value : vec){
+    std::cout << std::string(box_length*2+3,'-') << '\n';
+    for (size_t i = 0; i < Board.size(); ++i) {
+        std::cout << ": ";
+        for (const bool value : Board[i]){    
             std::cout << (value?'x':' ') << ' ';
         }
-    std::cout << '\n';
+    std::cout << ":\n";
     };
+    std::cout << std::string(box_length*2+3,'-') << std::endl;
 }
 
 // std::cout << '-' << std::string(2*length+2, '-') << '\n';
