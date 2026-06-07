@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+typedef std::vector<bool> vec;
 typedef std::vector<std::vector<bool>> Grid;
 
 const int length {25}; //version 2 type (25x25)
@@ -37,7 +38,8 @@ void write_on_board(Grid& Board, int length){
     Grid align_square {square_module(5)};
     past_grid(Board, align_square, 16, 16);
 
-    // 
+    // timing pattern
+
 }
 
 Grid square_module(int square_length) {
