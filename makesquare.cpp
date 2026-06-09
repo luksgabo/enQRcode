@@ -2,12 +2,12 @@
 #include <vector>
 
 typedef std::vector<bool> vec;
-typedef std::vector<std::vector<bool>> grid;
+// typedef std::vector<std::vector<bool>> grid;
 
-class gridclass {
+class grid {
 public:
-gridclass(){}
-gridclass(int length){
+grid(){}
+grid(int length){
     mlength = length;
     EmptyGrid();
 }
@@ -15,8 +15,20 @@ void SetLength(int length){
     mlength = length;
     EmptyGrid();
 }
+int size(){
+    return mlength;
+}
+size_t size() const {
+    return body.size();
+}
 std::vector<std::vector<bool>> GetBody(){
     return body;
+}
+std::vector<bool>& operator[](size_t index) {
+    return body[index];
+}
+const std::vector<bool>& operator[](size_t index) const {
+    return body[index];
 }
 
 private:
@@ -39,7 +51,7 @@ const int klength {25};
 // in the future I can adapt for larger versions
 constexpr char kWhite_symbol= '#', kBlack_symbol =' ';
 
-void write_on_board(grid& Board, int length);
+void write_on_board(grid& Board);
 void print_line(int length, char symbol );
 grid finder_pattern(int length);
 void paste_on_grid(grid& LargeGrid, const grid& SmallGrid,
@@ -49,20 +61,16 @@ void print_board(const grid& Board);
 
 int main(void)
 {
-    grid Board;
+    grid Board(klength);
 
-    write_on_board(Board, klength);
+    write_on_board(Board);
 
     print_board(Board);
 }
 
-void write_on_board(grid& Board, int length){
-    Board.resize(length, std::vector<bool>(length));
-    for (int i{0}; i<length; ++i){
-        for (int j{0}; j<length; ++j){
-            Board[j][i] = 0;
-        };
-    };
+void write_on_board(grid& Board){
+    int length{Board.size()};
+
     // square modules in corners
     grid finder_square {finder_pattern(7)};
     paste_on_grid(Board, finder_square, 0, 0);
@@ -78,9 +86,8 @@ void write_on_board(grid& Board, int length){
 }
 
 grid finder_pattern(int square_length) {
-    grid square{};
+    grid square(square_length);
 
-    square.resize(square_length,std::vector<bool>(square_length));
     square[0].flip();
     square[square_length-1].flip();
 
