@@ -7,15 +7,15 @@ typedef std::vector<bool> vec;
 class grid {
 public:
 grid(){}
-grid(int length){
+grid(size_t length){
     mlength = length;
     EmptyGrid();
 }
-void SetLength(int length){
+void SetLength(size_t length){
     mlength = length;
     EmptyGrid();
 }
-int size(){
+size_t size(){
     return mlength;
 }
 size_t size() const {
@@ -32,13 +32,13 @@ const std::vector<bool>& operator[](size_t index) const {
 }
 
 private:
-int mlength{0};
+size_t mlength{0};
 std::vector<std::vector<bool>> body;
 
 void EmptyGrid(){
     body.resize(mlength, std::vector<bool>(mlength));
-    for (int i{0}; i<mlength; ++i){
-        for (int j{0}; j<mlength; ++j){
+    for (size_t i{0}; i<mlength; ++i){
+        for (size_t j{0}; j<mlength; ++j){
             body[j][i] = 0;
         };
     };
@@ -46,14 +46,14 @@ void EmptyGrid(){
 
 };
 
-const int klength {25}; 
+const size_t klength {25}; 
 // I will start with only version 2 (25x25 modules)
 // in the future I can adapt for larger versions
 constexpr char kWhite_symbol= '#', kBlack_symbol =' ';
 
 void write_on_board(grid& Board);
-void print_line(int length, char symbol );
-grid finder_pattern(int length);
+void print_line(size_t length, char symbol );
+grid finder_pattern(size_t length);
 void paste_on_grid(grid& LargeGrid, const grid& SmallGrid,
                 size_t start_row, size_t start_col);
 
@@ -69,7 +69,7 @@ int main(void)
 }
 
 void write_on_board(grid& Board){
-    int length{Board.size()};
+    size_t length{Board.size()};
 
     // square modules in corners
     grid finder_square {finder_pattern(7)};
@@ -85,7 +85,7 @@ void write_on_board(grid& Board){
     
 }
 
-grid finder_pattern(int square_length) {
+grid finder_pattern(size_t square_length) {
     grid square(square_length);
 
     square[0].flip();
@@ -93,7 +93,7 @@ grid finder_pattern(int square_length) {
 
     switch (square_length){
     case 7:
-        for (int i{1}; i<square_length-1;++i){
+        for (size_t i{1}; i<square_length-1;++i){
             square[i][0].flip();
             square[i][square_length-1].flip();
         };
@@ -104,7 +104,7 @@ grid finder_pattern(int square_length) {
         };
         break;
     case 5:
-        for (int i{1}; i<square_length-1;++i){
+        for (size_t i{1}; i<square_length-1;++i){
             square[i][0].flip();
             square[i][square_length-1].flip();
         };
@@ -119,19 +119,19 @@ void paste_on_grid(grid& LargeGrid, const grid& SmallGrid,
                 size_t start_row, size_t start_col){
     size_t small_row_length{SmallGrid.size()};
     size_t small_col_length{SmallGrid.size()};
-    for (int i{0};i < small_row_length; ++i){
-        for (int j{0};j < small_col_length; ++j){
+    for (size_t i{0};i < small_row_length; ++i){
+        for (size_t j{0};j < small_col_length; ++j){
             LargeGrid[start_row + i][start_col + j] =
              SmallGrid[i][j];
         };
     };    
 }
 
-void print_line(int box_length, char symbol = kWhite_symbol) {
+void print_line(size_t box_length, char symbol = kWhite_symbol) {
     std::string line;
     line.reserve((box_length + 1) * 2 );
 
-    for (int i = 0; i <= box_length + 1; ++i) {
+    for (size_t i = 0; i <= box_length + 1; ++i) {
         line += symbol; line += ' ';
     }
     std::cout << line << std::endl;
