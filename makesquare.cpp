@@ -4,7 +4,9 @@
 typedef std::vector<bool> vec;
 typedef std::vector<std::vector<bool>> grid;
 
-const int klength {25}; //version 2 type (25x25)
+const int klength {25}; 
+// I will start with only version 2 (25x25 modules)
+// in the future I can adapt for larger versions
 constexpr char kWhite_symbol= '#', kBlack_symbol =' ';
 
 void write_on_board(grid& Board, int length);
@@ -32,14 +34,17 @@ void write_on_board(grid& Board, int length){
         };
     };
     // square modules in corners
-    grid square {finder_pattern(7)};
-    paste_on_grid(Board, square, 0, 0);
-    paste_on_grid(Board, square, 0, length-7);
-    paste_on_grid(Board, square, length-7, 0);
+    grid finder_square {finder_pattern(7)};
+    paste_on_grid(Board, finder_square, 0, 0);
+    paste_on_grid(Board, finder_square, 0, length-7);
+    paste_on_grid(Board, finder_square, length-7, 0);
     grid align_square {finder_pattern(5)};
     paste_on_grid(Board, align_square, 16, 16);
 
     // timing pattern
+    vec timing {};
+    timing.resize(9); 
+    std::cout << timing.size() << std::endl;
 
 }
 
