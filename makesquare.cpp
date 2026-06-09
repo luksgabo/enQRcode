@@ -4,6 +4,30 @@
 typedef std::vector<bool> vec;
 // typedef std::vector<std::vector<bool>> grid;
 
+class vector{
+public:
+vector(){}
+vector(size_t length){
+    mlength = length;
+    EmptyVector();
+}
+void SetLength(size_t length){
+        mlength = length;
+    EmptyVector();
+}
+
+private:
+size_t mlength{0};
+std::vector<bool> body;
+
+void EmptyVector(){
+    body.resize(mlength);
+    for (size_t j{0}; j<mlength; ++j){
+            body[j] = 0;
+    };
+}
+};
+
 class grid {
 public:
 grid(){}
