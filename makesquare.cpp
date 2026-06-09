@@ -15,22 +15,22 @@ void SetLength(size_t length){
         mlength = length;
     EmptyVector();
 }
-std::vector<bool> body;
 
 size_t size() const {
     return body.size();
 }
 
-bool& operator[](size_t index) {
+std::vector<bool>::reference operator[](size_t index) {
     return body[index];
 }
 
-const bool& operator[](size_t index) const {
+bool operator[](size_t index) const {
     return body[index];
 }
 
 private:
 size_t mlength{0};
+std::vector<bool> body;
 
 void EmptyVector(){
     body.resize(mlength);
@@ -114,7 +114,9 @@ void write_on_board(grid& Board){
 
     // timing pattern
     vec timing(9); 
-    for (size_t i{0}; i<timing.size(); i+=2) timing[i].flip();
+    for (size_t i{0}; i<timing.size(); i+=2) {
+        timing[i].flip();
+    }
 }
 
 grid finder_pattern(size_t square_length) {
