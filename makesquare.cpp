@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 
+#include "grid.h"
+
 // typedef std::vector<bool> vec;
 // typedef std::vector<std::vector<bool>> grid;
 
@@ -40,49 +42,48 @@ void EmptyVector(){
 }
 };
 
-class grid {
-public:
-grid(){}
-grid(size_t length){
-    mlength = length;
-    EmptyGrid();
-}
-void SetLength(size_t length){
-    mlength = length;
-    EmptyGrid();
-}
-size_t size() const {
-    return body.size();
-}
-std::vector<std::vector<bool>> GetBody(){
-    return body;
-}
-std::vector<bool>& operator[](size_t index) {
-    return body[index];
-}
-const std::vector<bool>& operator[](size_t index) const {
-    return body[index];
-}
+// class grid {
+// public:
+// grid(){}
+// grid(size_t length){
+//     mlength = length;
+//     EmptyGrid();
+// }
+// void SetLength(size_t length){
+//     mlength = length;
+//     EmptyGrid();
+// }
+// size_t size() const {
+//     return body.size();
+// }
+// std::vector<std::vector<bool>> GetBody(){
+//     return body;
+// }
+// std::vector<bool>& operator[](size_t index) {
+//     return body[index];
+// }
+// const std::vector<bool>& operator[](size_t index) const {
+//     return body[index];
+// }
 
-private:
-size_t mlength{0};
-std::vector<std::vector<bool>> body;
+// private:
+// size_t mlength{0};
+// std::vector<std::vector<bool>> body;
 
-void EmptyGrid(){
-    body.resize(mlength, std::vector<bool>(mlength));
-    for (size_t i{0}; i<mlength; ++i){
-        for (size_t j{0}; j<mlength; ++j){
-            body[j][i] = 0;
-        };
-    };
-}
-
-};
+// void EmptyGrid(){
+//     body.resize(mlength, std::vector<bool>(mlength));
+//     for (size_t i{0}; i<mlength; ++i){
+//         for (size_t j{0}; j<mlength; ++j){
+//             body[j][i] = 0;
+//         };
+//     };
+// }
+// };
 
 const size_t klength {25}; 
 // I will start with only version 2 (25x25 modules)
 // in the future I can adapt for larger versions
-constexpr char kWhite_symbol= '#', kBlack_symbol =' ';
+constexpr char kWhite_symbol= 'x', kBlack_symbol =' ';
 
 void print_line(size_t length, char symbol );
 grid finder_pattern(size_t length);
