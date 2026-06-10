@@ -2,83 +2,47 @@
 #include <vector>
 
 #include "grid.h"
+#include "vec.h"
 
 // typedef std::vector<bool> vec;
 // typedef std::vector<std::vector<bool>> grid;
 
-class vec{
-public:
-vec(){}
-vec(size_t length){
-    mlength = length;
-    EmptyVector();
-}
-void SetLength(size_t length){
-        mlength = length;
-    EmptyVector();
-}
-
-size_t size() const {
-    return body.size();
-}
-
-std::vector<bool>::reference operator[](size_t index) {
-    return body[index];
-}
-
-bool operator[](size_t index) const {
-    return body[index];
-}
-
-private:
-size_t mlength{0};
-std::vector<bool> body;
-
-void EmptyVector(){
-    body.resize(mlength);
-    for (size_t j{0}; j<mlength; ++j){
-            body[j] = 0;
-    };
-}
-};
-
-// class grid {
+// class vec{
 // public:
-// grid(){}
-// grid(size_t length){
+// vec(){}
+// vec(size_t length){
 //     mlength = length;
-//     EmptyGrid();
+//     EmptyVector();
 // }
 // void SetLength(size_t length){
-//     mlength = length;
-//     EmptyGrid();
+//         mlength = length;
+//     EmptyVector();
 // }
+
 // size_t size() const {
 //     return body.size();
 // }
-// std::vector<std::vector<bool>> GetBody(){
-//     return body;
-// }
-// std::vector<bool>& operator[](size_t index) {
+
+// std::vector<bool>::reference operator[](size_t index) {
 //     return body[index];
 // }
-// const std::vector<bool>& operator[](size_t index) const {
+
+// bool operator[](size_t index) const {
 //     return body[index];
 // }
 
 // private:
 // size_t mlength{0};
-// std::vector<std::vector<bool>> body;
+// std::vector<bool> body;
 
-// void EmptyGrid(){
-//     body.resize(mlength, std::vector<bool>(mlength));
-//     for (size_t i{0}; i<mlength; ++i){
-//         for (size_t j{0}; j<mlength; ++j){
-//             body[j][i] = 0;
-//         };
+// void EmptyVector(){
+//     body.resize(mlength);
+//     for (size_t j{0}; j<mlength; ++j){
+//             body[j] = 0;
 //     };
 // }
 // };
+
 
 const size_t klength {25}; 
 // I will start with only version 2 (25x25 modules)
