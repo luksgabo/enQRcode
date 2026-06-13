@@ -6,8 +6,9 @@
 #include <vector>
 #include <string>
 #include "grid_to_png.h"
+#include "TinyPngOut.hpp"
 
-static void writeMatrixToPng(
+void writeMatrixToPng(
     const grid &matrix, 
     int scale,          
     const std::string &filename) {
