@@ -13,8 +13,8 @@ void writeMatrixToPng(
     int scale,          
     const std::string &filename) {
 
-    size_t grid_width{matrix.size() * scale};
     size_t grid_heigth{matrix.size() * scale};
+    size_t grid_width{matrix[0].size() * scale};
 
     std::vector<uint8_t> pixels(grid_width * grid_heigth * 3);
     // single row vector 
