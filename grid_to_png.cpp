@@ -26,18 +26,22 @@ void writeMatrixToPng(
             uint32_t sy = y / scale;
 
             uint8_t bit = matrix[sx][sy];
-            uint8_t value = bit ? 0 : 255 ; // 1 -> black, 0 -> white
+            uint8_t value = bit ? 0 : 255 ; 
+            // 1 -> black, 0 -> white
 
             size_t idx = (static_cast<size_t>(y) * grid_width + x) * 3;
 
             // Add color options
-            pixels[idx + 0] = value;
-            pixels[idx + 1] = value;
-            pixels[idx + 2] = value;
+            pixels[idx + 0] = value; // Red pixel
+            pixels[idx + 1] = value; // Green pixel
+            pixels[idx + 2] = value; // Blue pixel
         }
     }
 
-    std::ofstream out(filename, std::ios::binary);
+    std::ofstream out(filename, std::ios::binary); 
+    // opening the output file
     TinyPngOut pngout(grid_width, grid_heigth, out);
+    // creating TinyPngOut writer
     pngout.write(pixels.data(), grid_width * grid_heigth);
+    // write the pixel buffer into the png file
     }
