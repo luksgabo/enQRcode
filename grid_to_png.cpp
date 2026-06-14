@@ -5,13 +5,21 @@
 #include <iostream>
 #include <vector>
 #include <string>
+
+#include "grid.h"
 #include "grid_to_png.h"
 #include "TinyPngOut.hpp"
+#include "write_print.h"
 
 void writeMatrixToPng(
-    const grid &matrix, 
+    const grid &Board, 
     int scale,          
     const std::string &filename) {
+
+    size_t Board_length{Board.size() };
+    // add quiet zone: 4 white modules around grid 
+    grid matrix(Board_length + 4);
+    paste_on_grid(matrix, Board, 2, 2);
 
     size_t grid_heigth{matrix.size() * scale};
     size_t grid_width{matrix[0].size() * scale};
