@@ -11,7 +11,7 @@
 #include "TinyPngOut.hpp"
 #include "write_print.h"
 
-void writeMatrixToPng(
+void write_matrix_to_png(
     const grid &Board, 
     int scale,          
     const std::string &filename) {
