@@ -6,6 +6,7 @@
 #include "vec.h"
 #include "write_print.h"
 #include "grid_to_png.h"
+#include "encoding.h"
 
 // Defining global variables
 const size_t klength {25}; 
@@ -19,8 +20,14 @@ int main(void)
 
     write_on_board(Board);
 
-    print_board(Board);
+    // print_board(Board);
 
     write_matrix_to_png(Board, 5, "code.png") ;
+
+    std::string message;
+    std::getline(std::cin, message);
+    std::string encoded_message{message_to_byte(message)};
+    std::cout << encoded_message << std::endl;
+
 }
 
