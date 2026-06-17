@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <bitset>
 
 #include "globals.h"
 #include "grid.h"
@@ -26,8 +27,18 @@ int main(void)
 
     std::string message;
     std::getline(std::cin, message);
-    std::string encoded_message{message_to_byte(message)};
-    std::cout << encoded_message << std::endl;
+    auto encoded_message = message_to_byte(message);
+
+    // for (auto bit : encoded_message) {
+    std::cout << std::endl;
+    for (int i{0}; i< message.size(); i++){
+        auto bit = encoded_message[i];
+        auto ch = message[i];
+        unsigned value = std::to_integer<unsigned>(bit);
+        std::cout << ch << ": " << std::bitset<8>(value) << '\n';
+    }
+    std::cout << std::endl;
+    
 
 }
 
