@@ -13,15 +13,15 @@ void write_patterns_on_board(grid& Board){
     grid finder_square {finder_pattern(7)};
     vec separator(8);
     // upper-left
-    paste_grid_grid(Board, finder_square, 0, 0, false);
+    paste_grid_grid(Board, finder_square, 0, 0, true);
     paste_vec_grid(Board, separator, 0, 7, 'v', true);
     paste_vec_grid(Board, separator, 7, 0, 'h', true);
     // upper-right
-    paste_grid_grid(Board, finder_square, 0, length-7, false);
+    paste_grid_grid(Board, finder_square, 0, length-7, true);
     paste_vec_grid(Board, separator, 0, length-8, 'v', true);
     paste_vec_grid(Board, separator, 7, length-8, 'h', true);
     // upper-right
-    paste_grid_grid(Board, finder_square, length-7, 0, false);
+    paste_grid_grid(Board, finder_square, length-7, 0, true);
     paste_vec_grid(Board, separator, length-8, 7, 'v', true);
     paste_vec_grid(Board, separator, length-8, 0, 'h', true);
 
