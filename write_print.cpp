@@ -175,7 +175,7 @@ void print_board_index(const grid& Board){
     for (size_t i = 0; i < Board.size(); ++i) {
         std::cout << kWhite_symbol << ' ';
         // for (const bool value : Board[i]){
-        for (size_t j = 0; i<Board.size(); ++j){ 
+        for (size_t j = 0; j<Board.size(); ++j){ 
             std::cout << std::setw(3);
             std::cout << Board.vec_index[i*Board.size()+j] << ' ';
         }
