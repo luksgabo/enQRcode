@@ -25,20 +25,8 @@ int main(void)
 
     // write_matrix_to_png(Board, 5, "code.png") ;
 
-    std::string message;
-    std::getline(std::cin, message);
-    auto encoded_message = message_to_byte(message);
-
     // wait input message and output it encoded in bytes
-    std::cout << std::endl;
-    for (int i{0}; i< message.size(); i++){
-        auto bit = encoded_message[i];
-        auto ch = message[i];
-        unsigned value = std::to_integer<unsigned>(bit);
-        std::cout << ch << ": " << std::bitset<8>(value) << '\n';
-    }
-    std::cout << std::endl;
-    
+    encode_message_to_bytes();  
 
 }
 
