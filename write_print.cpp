@@ -133,6 +133,23 @@ void print_board(const grid& Board){
     std::cout << '\n';
 }
 
+void print_board(const std::vector<std::vector<bool>>& Board){
+    size_t box_length { Board[0].size()};
+
+    // std::cout << std::string(box_length,'x') << '\n';
+    print_line(box_length);
+    for (size_t i = 0; i < Board.size(); ++i) {
+        std::cout << kWhite_symbol << ' ';
+        for (const bool value : Board[i]){    
+            std::cout << (value?kBlack_symbol:kWhite_symbol) << ' ';
+        }
+    std::cout << kWhite_symbol<< '\n';
+    };
+    // std::cout << std::string(box_length*2+3,'x') << std::endl;
+    print_line(box_length);
+    std::cout << '\n';
+}
+
 // Display the indexes of the squares in the terminal.
 // Useful for debugging the board layout and position mapping.
 void print_board_index(const grid& Board){

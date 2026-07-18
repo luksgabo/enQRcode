@@ -20,4 +20,7 @@ void write_patterns_on_board(grid& Board);
 // Print the boolean grid to stdout using display symbols.
 void print_board(const grid& Board);
 
+// Print a raw boolean matrix to stdout using display symbols.
+void print_board(const std::vector<std::vector<bool>>& Board);
+
 void print_board_index(const grid& Board);

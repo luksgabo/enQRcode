@@ -22,6 +22,9 @@ int main(void)
     write_patterns_on_board(Board);
 
     print_board(Board);
+    // check the encoding area
+    const auto &writable = Board.GetWritableMask();
+    print_board(writable);
 
     // write_matrix_to_png(Board, 5, "code.png") ;
 

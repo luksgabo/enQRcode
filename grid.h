@@ -12,13 +12,17 @@ public:
     void SetLength(size_t length);
 
     // Set if square of grid is an encoding area
-    void SetUnwritable(size_t row, size_t col){body_writable[row][col].flip();}
+    void SetUnwritable(size_t row, size_t col){body_writable[row][col]=false;}
 
     // Return the current grid dimension.
     size_t size() const{ return body.size();}
 
     // Return a copy of the internal 2D matrix.
-    std::vector<std::vector<bool>> GetBody() { return body;}
+    // std::vector<std::vector<bool>> GetBody() { return body;}
+    // std::vector<std::vector<bool>> GetWritable() { return body_writable;}
+
+    const std::vector<std::vector<bool>>& GetWritableMask() const {
+    return body_writable;}
 
     // Access a row by index.
     std::vector<bool>& operator[](size_t index){ return body[index];}
