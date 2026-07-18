@@ -17,3 +17,12 @@ void grid::EmptyGrid(){
         };
     };
 }
+
+// partition of grid into codewords: pieces of 8 squares
+// usually in two columns by four rows, from right to left and either upwards or downwards
+// but depends on alignment patterns boundaries
+void DataCodewords(){
+// get the empty grid with all the alignment patterns 
+// get a list of indexes of available squares
+// assign the indexes to each codeword
+}

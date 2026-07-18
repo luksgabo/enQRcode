@@ -19,14 +19,14 @@ int main(void)
 {
     grid Board(klength);
 
-    // write_on_board(Board);
+    write_on_board(Board);
 
-    // print_board(Board);
+    print_board(Board);
 
     // write_matrix_to_png(Board, 5, "code.png") ;
 
     // wait input message and output it encoded in bytes
-    encode_message_to_bytes();  
+    // encode_message_to_bytes();  
 
 }
 

@@ -3,25 +3,33 @@
 
 class grid {
 public:
-grid(){}
-grid(size_t length);
+    // Default empty grid.
+    grid(){}
+    // Create a square grid of the requested length.
+    grid(size_t length);
 
-void SetLength(size_t length);
-size_t size() const{ return body.size();}
+    // Resize the grid and reset all cells to false.
+    void SetLength(size_t length);
+    // Return the current grid dimension.
+    size_t size() const{ return body.size();}
 
-std::vector<std::vector<bool>> GetBody() { return body;}
+    // Return a copy of the internal 2D matrix.
+    std::vector<std::vector<bool>> GetBody() { return body;}
 
-std::vector<bool>& operator[](size_t index){ return body[index];}
-const std::vector<bool>& operator[](size_t index) const 
-{ return body[index];}
+    // Access a row by index.
+    std::vector<bool>& operator[](size_t index){ return body[index];}
+    const std::vector<bool>& operator[](size_t index) const 
+    { return body[index];}
 
 private:
-// number of rows and columns in the square grid
-size_t mlength{0};
-// 2D matrix of module values: true = black, false = white
-std::vector<std::vector<bool>> body;
+    // number of rows and columns in the square grid
+    size_t mlength{0};
+    // 2D matrix of module values: true = black, false = white
+    std::vector<std::vector<bool>> body;
 
-void EmptyGrid();
-void DataCodewords();
+    // Set grid dimensions and fill with false.
+    void EmptyGrid();
+    // Placeholder for adding data codewords into the grid.
+    void DataCodewords();
 
 };
