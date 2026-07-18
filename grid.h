@@ -16,9 +16,12 @@ const std::vector<bool>& operator[](size_t index) const
 { return body[index];}
 
 private:
+// number of rows and columns in the square grid
 size_t mlength{0};
+// 2D matrix of module values: true = black, false = white
 std::vector<std::vector<bool>> body;
 
 void EmptyGrid();
+void DataCodewords();
 
 };

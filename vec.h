@@ -16,7 +16,9 @@ bool operator[](size_t index) const
 { return body[index]; }
 
 private:
+// number of elements in the vector
 size_t mlength{0};
+// linear sequence of module values: true = black, false = white
 std::vector<bool> body;
 
 void EmptyVector();
