@@ -20,7 +20,7 @@ void write_patterns_on_board(grid& Board){
     paste_grid_grid(Board, finder_square, 0, length-7, true);
     paste_vec_grid(Board, separator, 0, length-8, 'v', true);
     paste_vec_grid(Board, separator, 7, length-8, 'h', true);
-    // upper-right
+    // lower-left
     paste_grid_grid(Board, finder_square, length-7, 0, true);
     paste_vec_grid(Board, separator, length-8, 7, 'v', true);
     paste_vec_grid(Board, separator, length-8, 0, 'h', true);
