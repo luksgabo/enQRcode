@@ -3,10 +3,12 @@
 grid::grid(size_t length){
     mlength = length;
     grid::EmptyGrid();
+    grid::IndexGrid();
 }
 void grid::SetLength(size_t length){
     mlength = length;
     grid::EmptyGrid();
+    grid::IndexGrid();
 }
 
 void grid::EmptyGrid(){
@@ -16,6 +18,14 @@ void grid::EmptyGrid(){
             body[j][i] = 0;
         };
     };
+}
+
+void grid::IndexGrid(){
+    vec_index.resize(mlength*mlength);
+    for (size_t i{0}; i<mlength*mlength; ++i){
+        vec_index[i] = i;
+        };
+
 }
 
 // partition of grid into codewords: pieces of 8 squares

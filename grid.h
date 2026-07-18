@@ -21,15 +21,22 @@ public:
     const std::vector<bool>& operator[](size_t index) const 
     { return body[index];}
 
+
 private:
     // number of rows and columns in the square grid
     size_t mlength{0};
     // 2D matrix of module values: true = black, false = white
     std::vector<std::vector<bool>> body;
+    // 1D matrix with indexes of grid
+    std::vector<size_t> vec_index;
 
     // Set grid dimensions and fill with false.
     void EmptyGrid();
+
     // Placeholder for adding data codewords into the grid.
     void DataCodewords();
+
+    // Vector of indexes relating to the original.
+    void IndexGrid();
 
 };
