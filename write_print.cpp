@@ -11,27 +11,42 @@ void write_patterns_on_board(grid& Board){
 
     // square modules in corners
     grid finder_square {finder_pattern(7)};
-    paste_grid_grid(Board, finder_square, 0, 0, 1);
-    paste_grid_grid(Board, finder_square, 0, length-7, 1);
-    paste_grid_grid(Board, finder_square, length-7, 0, 1);
+    vec separator(8);
+    // upper-left
+    paste_grid_grid(Board, finder_square, 0, 0, false);
+    paste_vec_grid(Board, separator, 0, 7, 'v', true);
+    paste_vec_grid(Board, separator, 7, 0, 'h', true);
+    // upper-right
+    paste_grid_grid(Board, finder_square, 0, length-7, false);
+    paste_vec_grid(Board, separator, 0, length-8, 'v', true);
+    paste_vec_grid(Board, separator, 7, length-8, 'h', true);
+    // upper-right
+    paste_grid_grid(Board, finder_square, length-7, 0, false);
+    paste_vec_grid(Board, separator, length-8, 7, 'v', true);
+    paste_vec_grid(Board, separator, length-8, 0, 'h', true);
+
     grid align_square {finder_pattern(5)};
-    paste_grid_grid(Board, align_square, 16, 16, 1);
+    paste_grid_grid(Board, align_square, 16, 16, true);
 
     // timing pattern
     vec timing(9); 
     for (size_t i{0}; i<timing.size(); i+=2) {
         timing[i].flip();
     }
-
-    paste_vec_grid(Board, timing, 8, 6, 'v', 1);
-    paste_vec_grid(Board, timing, 6, 8, 'h', 1);
+    paste_vec_grid(Board, timing, 8, 6, 'v', true);
+    paste_vec_grid(Board, timing, 6, 8, 'h', true);
 
     // Format information pattern
-    vec information(9);
-    for (size_t i{0}; i<information.size(); i+=2) {
-        information[i].flip();
-    }
-    // paste_on_grid(Board, information, )
+    // only defining as unwritable for now
+    vec information(8);
+    // upper-left
+    paste_vec_grid(Board, information, 0, 8, 'v', true);
+    paste_vec_grid(Board, information, 8, 0, 'h', true);
+    Board.SetUnwritable(8,8);
+    // upper-right
+    paste_vec_grid(Board, information, 8, length-8, 'h', true);
+    // lower-left
+    paste_vec_grid(Board, information, length-8, 8, 'v', true);
 }
 
 // Build a finder or alignment square pattern of the given size.
