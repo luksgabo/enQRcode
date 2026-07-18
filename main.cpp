@@ -19,7 +19,7 @@ int main(void)
 {
     grid Board(klength);
 
-    write_on_board(Board);
+    write_patterns_on_board(Board);
 
     print_board(Board);
 

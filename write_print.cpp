@@ -1,18 +1,21 @@
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include "write_print.h"
 #include "globals.h"
 
-void write_on_board(grid& Board){
+// Place the static QR-like patterns onto the board, including finder squares,
+// alignment squares, and timing lines.
+void write_patterns_on_board(grid& Board){
     size_t length{Board.size()};
 
     // square modules in corners
     grid finder_square {finder_pattern(7)};
-    paste_on_grid(Board, finder_square, 0, 0);
-    paste_on_grid(Board, finder_square, 0, length-7);
-    paste_on_grid(Board, finder_square, length-7, 0);
+    paste_grid_grid(Board, finder_square, 0, 0, 1);
+    paste_grid_grid(Board, finder_square, 0, length-7, 1);
+    paste_grid_grid(Board, finder_square, length-7, 0, 1);
     grid align_square {finder_pattern(5)};
-    paste_on_grid(Board, align_square, 16, 16);
+    paste_grid_grid(Board, align_square, 16, 16, 1);
 
     // timing pattern
     vec timing(9); 
@@ -20,10 +23,18 @@ void write_on_board(grid& Board){
         timing[i].flip();
     }
 
-    paste_on_grid(Board, timing, 8, 6, 'v');
-    paste_on_grid(Board, timing, 6, 8, 'h');
+    paste_vec_grid(Board, timing, 8, 6, 'v', 1);
+    paste_vec_grid(Board, timing, 6, 8, 'h', 1);
+
+    // Format information pattern
+    vec information(9);
+    for (size_t i{0}; i<information.size(); i+=2) {
+        information[i].flip();
+    }
+    // paste_on_grid(Board, information, )
 }
 
+// Build a finder or alignment square pattern of the given size.
 grid finder_pattern(size_t square_length) {
     grid square(square_length);
 
@@ -54,36 +65,46 @@ grid finder_pattern(size_t square_length) {
     return square;
 }
 
-void paste_on_grid(grid& LargeGrid, const grid& SmallGrid,
-                size_t start_row, size_t start_col){
+// Copy a smaller grid into a larger grid at the specified location.
+void paste_grid_grid(grid& LargeGrid, const grid& SmallGrid,
+                size_t start_row, size_t start_col, bool uwtb = false ){
     size_t small_row_length{SmallGrid.size()};
     size_t small_col_length{SmallGrid.size()};
     for (size_t i{0};i < small_row_length; ++i){
         for (size_t j{0};j < small_col_length; ++j){
             LargeGrid[start_row + i][start_col + j] =
              SmallGrid[i][j];
+            // for a static pattern the square is unwritable
+            if (uwtb) {LargeGrid.SetUnwritable(start_row + i,start_col + j);}
         };
     };    
 }
 
-void paste_on_grid(grid& LargeGrid, const vec& Vec,
+// Copy a linear vector into a grid either vertically or horizontally.
+void paste_vec_grid(grid& LargeGrid, const vec& Vec,
                 size_t start_row, size_t start_col, 
-                char orientation ) {
+                char orientation, bool uwtb = false ) {
+    
     size_t vec_length{Vec.size()};
     if (orientation=='v') {
     for (size_t i{0};i < vec_length; ++i){
             LargeGrid[start_row + i][start_col] =
              Vec[i];
+             // for a static pattern the square is unwritable
+            if (uwtb) {LargeGrid.SetUnwritable(start_row + i,start_col);}
     };    
     }
     else if (orientation=='h') {
     for (size_t j{0};j < vec_length; ++j){
             LargeGrid[start_row ][start_col + j] =
              Vec[j];
+             // for a static pattern the square is unwritable
+            if (uwtb) {LargeGrid.SetUnwritable(start_row,start_col + j);}
     };    
     }
 }
 
+// Print a border line around the board for console display.
 void print_line(size_t box_length, char symbol = kWhite_symbol) {
     std::string line;
     line.reserve((box_length + 1) * 2 );
@@ -94,6 +115,7 @@ void print_line(size_t box_length, char symbol = kWhite_symbol) {
     std::cout << line << std::endl;
 }
 
+// Display board in terminal with symbols for dark and light squares
 void print_board(const grid& Board){
     size_t box_length { Board[0].size()};
 
@@ -103,6 +125,27 @@ void print_board(const grid& Board){
         std::cout << kWhite_symbol << ' ';
         for (const bool value : Board[i]){    
             std::cout << (value?kBlack_symbol:kWhite_symbol) << ' ';
+        }
+    std::cout << kWhite_symbol<< '\n';
+    };
+    // std::cout << std::string(box_length*2+3,'x') << std::endl;
+    print_line(box_length);
+    std::cout << '\n';
+}
+
+// Display the indexes of the squares in the terminal.
+// Useful for debugging the board layout and position mapping.
+void print_board_index(const grid& Board){
+    size_t box_length { Board[0].size()};
+
+    // std::cout << std::string(box_length,'x') << '\n';
+    print_line(box_length);
+    for (size_t i = 0; i < Board.size(); ++i) {
+        std::cout << kWhite_symbol << ' ';
+        // for (const bool value : Board[i]){
+        for (size_t j = 0; i<Board.size(); ++j){ 
+            std::cout << std::setw(3);
+            std::cout << Board.vec_index[i*Board.size()+j] << ' ';
         }
     std::cout << kWhite_symbol<< '\n';
     };
