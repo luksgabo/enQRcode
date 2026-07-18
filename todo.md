@@ -9,7 +9,8 @@
 - [ ] Add logo embedding support
 
 ## Code
-- [ ] Divide grid into regions to add the code 
+- [x] Define the writable area on the grid
+- [ ] Divide grid into regions: DataCodewords
 
 ## Implementation
 - [ ] Set up QR code library integration
@@ -23,6 +24,6 @@
 - [ ] Test error correction levels
 
 ## Documentation
-- [ ] Add README
+- [x] Add README
 - [ ] Add usage examples
 - [ ] Add API documentation
