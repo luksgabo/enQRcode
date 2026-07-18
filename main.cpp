@@ -19,17 +19,17 @@ int main(void)
 {
     grid Board(klength);
 
-    write_on_board(Board);
+    // write_on_board(Board);
 
     // print_board(Board);
 
-    write_matrix_to_png(Board, 5, "code.png") ;
+    // write_matrix_to_png(Board, 5, "code.png") ;
 
     std::string message;
     std::getline(std::cin, message);
     auto encoded_message = message_to_byte(message);
 
-    // for (auto bit : encoded_message) {
+    // wait input message and output it encoded in bytes
     std::cout << std::endl;
     for (int i{0}; i< message.size(); i++){
         auto bit = encoded_message[i];
