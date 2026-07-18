@@ -1,11 +1,13 @@
 #include <iostream>
 #include <vector>
+#include <bitset>
 
 #include "globals.h"
 #include "grid.h"
 #include "vec.h"
 #include "write_print.h"
 #include "grid_to_png.h"
+#include "encoding.h"
 
 // Defining global variables
 const size_t klength {25}; 
@@ -17,10 +19,17 @@ int main(void)
 {
     grid Board(klength);
 
-    write_on_board(Board);
+    write_patterns_on_board(Board);
 
     print_board(Board);
+    // check the encoding area
+    const auto &writable = Board.GetWritableMask();
+    print_board(writable);
 
-    writeMatrixToPng(Board, 5, "code.png") ;
+    // write_matrix_to_png(Board, 5, "code.png") ;
+
+    // wait input message and output it encoded in bytes
+    // encode_message_to_bytes();  
+
 }
 

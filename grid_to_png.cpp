@@ -11,7 +11,7 @@
 #include "TinyPngOut.hpp"
 #include "write_print.h"
 
-void writeMatrixToPng(
+void write_matrix_to_png(
     const grid &Board, 
     int scale,          
     const std::string &filename) {
@@ -19,7 +19,7 @@ void writeMatrixToPng(
     size_t Board_length{Board.size() };
     // add quiet zone: 4 white modules around grid 
     grid matrix(Board_length + 4);
-    paste_on_grid(matrix, Board, 2, 2);
+    paste_grid_grid(matrix, Board, 2, 2, true);
 
     size_t grid_heigth{matrix.size() * scale};
     size_t grid_width{matrix[0].size() * scale};
