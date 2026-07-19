@@ -18,7 +18,6 @@ constexpr char kWhite_symbol= 'x', kBlack_symbol =' ';
 int main(void)
 {
     grid Board(klength);
-
     write_patterns_on_board(Board);
 
     print_board(Board);

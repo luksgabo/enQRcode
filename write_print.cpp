@@ -30,23 +30,32 @@ void write_patterns_on_board(grid& Board){
 
     // timing pattern
     vec timing(9); 
-    for (size_t i{0}; i<timing.size(); i+=2) {
-        timing[i].flip();
-    }
+    for (size_t i{0}; i<timing.size(); i+=2) {timing[i].flip();}
+
     paste_vec_grid(Board, timing, 8, 6, 'v', true);
     paste_vec_grid(Board, timing, 6, 8, 'h', true);
 
     // Format information pattern
     // only defining as unwritable for now
-    vec information(8);
+    vec information(6);
     // upper-left
-    paste_vec_grid(Board, information, 0, 8, 'v', true);
-    paste_vec_grid(Board, information, 8, 0, 'h', true);
-    Board.SetUnwritable(8,8);
-    // upper-right
-    paste_vec_grid(Board, information, 8, length-8, 'h', true);
-    // lower-left
-    paste_vec_grid(Board, information, length-8, 8, 'v', true);
+    for (size_t i=0; i<=8; i++) {
+        if (i<8) {
+            Board.SetUnwritable(length-1-i,8);
+            Board.SetUnwritable(8,length-1-i);
+        }
+        if (i==6) continue;
+        Board.SetUnwritable(i,8);
+        Board.SetUnwritable(8,i);
+    }
+    // paste_vec_grid(Board, information, 0, 8, 'v', true);
+    // paste_vec_grid(Board, information, 8, 0, 'h', true);
+    // Board.SetUnwritable(8,8);
+    // information.SetLength(8);
+    // // upper-right
+    // paste_vec_grid(Board, information, 8, length-8, 'h', true);
+    // // lower-left
+    // paste_vec_grid(Board, information, length-8, 8, 'v', true);
 }
 
 // Build a finder or alignment square pattern of the given size.

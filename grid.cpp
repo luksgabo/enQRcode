@@ -1,14 +1,15 @@
 #include "grid.h"
+#include "write_print.h"
 
 grid::grid(size_t length){
     mlength = length;
     grid::EmptyGrid();
-    grid::IndexGrid();
+    // grid::IndexGrid();
 }
 void grid::SetLength(size_t length){
     mlength = length;
     grid::EmptyGrid();
-    grid::IndexGrid();
+    // grid::IndexGrid();
 }
 
 void grid::EmptyGrid(){
