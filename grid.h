@@ -7,6 +7,7 @@ public:
     grid(){}
     // Create a square grid of the requested length.
     grid(size_t length);
+    // grid(size_t length, bool patterned);
 
     // Resize the grid and reset all cells to false.
     void SetLength(size_t length);
